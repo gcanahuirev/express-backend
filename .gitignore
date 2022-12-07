@@ -1,0 +1,65 @@
+### Node
+# Dependency directories
+/dist
+/node_modules
+package-lock.json
+documentation.requests.http
+/documentation
+/postgres_data
+tsconfig.tsbuildinfo
+
+# Logs
+logs
+*.log
+npm-debug.log_
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# OS
+.DS_Store
+
+# Compodoc
+/documentation
+
+# Tests
+/coverage
+/.nyc_output
+
+# TypeScript cache
+/*.tsbuildinfo
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.test
+.env.development
+.env.production
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# IDE VisualStudioCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Local History for Visual Studio Code
+/.history
