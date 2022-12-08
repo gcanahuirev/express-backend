@@ -6,7 +6,7 @@
     "strict": true,
     "sourceMap": true,
     "declaration": true,
-    "incremental": true,
+    "incremental": false,
     "skipLibCheck": true,
     "noImplicitAny": false,
     "removeComments": true,
@@ -20,15 +20,6 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "rootDir": "./src"
-    /* "paths": {
-      "~/*": ["src/*"],
-      "~m/*": ["src/modules/*"],
-      "~configuration": ["src/common/configuration"],
-      "~entities": ["src/common/entities"],
-      "~helpers": ["src/common/helpers"],
-      "~utils": ["src/common/utils"],
-      "~scripts": ["src/scripts"]
-    } */
   },
   "include": ["./src/**/*", "./test/**/*"],
   "exclude": ["node_modules", "dist"]

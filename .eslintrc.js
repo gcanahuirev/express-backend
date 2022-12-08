@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     node: true,
-    es2021: true,
+    es2017: true,
   },
   extends: [
     'eslint:recommended',
@@ -18,8 +18,9 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 8,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
   plugins: [
     'simple-import-sort',
@@ -27,11 +28,18 @@ module.exports = {
     '@typescript-eslint',
     'prettier',
   ],
+  root: true,
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
-    'import/extensions': [0],
-    'class-methods-use-this': [0],
-    'prettier/prettier': ['error'],
+    'import/extensions': 'off',
+    'class-methods-use-this': 'off',
+    'prettier/prettier': 'error',
     'simple-import-sort/exports': 'error',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    /* 'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ], */
   },
 };

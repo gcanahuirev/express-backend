@@ -1,8 +1,10 @@
-import express, { Application, Handler } from 'express';
-import morgan from 'morgan';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import path from 'path';
 import logger from './libs/logger';
+import loggerHttp from './libs/loggerHttp';
 import MetadataKeys from './utils/metadata.keys';
+
+import express, { Application, Handler } from 'express';
 import { IRouter } from './decorators/handler.decorator';
 
 class ExpressApplication {
@@ -79,7 +81,7 @@ class ExpressApplication {
 
   private setupLogger() {
     if (process.env.NODE_ENV === 'development') {
-      this.app.use(morgan('dev'));
+      this.app.use(loggerHttp);
     }
   }
 

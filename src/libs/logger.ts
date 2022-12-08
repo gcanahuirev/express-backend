@@ -1,21 +1,16 @@
-import { format, createLogger, transports } from 'winston';
+import pino from 'pino';
 
-const { timestamp, combine, printf, errors } = format;
+const logger = pino({
+  transport: {
+    target: 'pino-pretty',
+    options: {
+      levelFirst: true,
+      translateTime: 'SYS:dd-mm-yyyy h:MM:ss TT Z',
+      ignore: 'pid,hostname',
+      colorize: true,
+    },
+    level: 'debug',
+  },
+});
 
-function logger() {
-  const logFormat = printf(({ level, message, timestamp, stack }) => {
-    return `${timestamp} ${level}: ${stack || message}`;
-  });
-
-  return createLogger({
-    format: combine(
-      format.colorize(),
-      timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-      errors({ stack: true }),
-      logFormat,
-    ),
-    transports: [new transports.Console()],
-  });
-}
-
-export default logger();
+export default logger;

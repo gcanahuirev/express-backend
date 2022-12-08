@@ -1,4 +1,4 @@
-import path from 'path';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import MetadataKeys from '../utils/metadata.keys';
 
 export enum Methods {
@@ -42,4 +42,3 @@ export const Post = decoratorFactory(Methods.POST);
 export const Put = decoratorFactory(Methods.PUT);
 export const Patch = decoratorFactory(Methods.PATCH);
 export const Delete = decoratorFactory(Methods.DELETE);
-
