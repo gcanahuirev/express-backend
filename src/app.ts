@@ -1,11 +1,11 @@
+import 'reflect-metadata';
 import dotenv from 'dotenv';
 import express from 'express';
-import ExpressApplication from './bootstrap';
 import logger from './libs/logger';
-import 'reflect-metadata';
+import ExpressApplication from './bootstrap';
 import UserController from './api/user.controller';
 
-dotenv.config({ path: `${process.cwd()}/.env.${process.env.NODE_ENV}` });
+dotenv.config({ path: `${process.cwd()}/.env` });
 
 const PORT = process.env.PORT || 3000;
 

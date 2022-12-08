@@ -34,7 +34,7 @@ class ExpressApplication {
   }
 
   private setupRoutes(controllers: any[]) {
-    const info: Array<{ path: string; handler: string }> = [];
+    const info: Array<{ METHOD: string; PATH: string; HANDLER: string }> = [];
     controllers.forEach((Controller) => {
       const controllerInstance: { [handlerName: string]: Handler } =
         new Controller();
@@ -65,8 +65,9 @@ class ExpressApplication {
         }
 
         info.push({
-          path: `${method.toLocaleLowerCase()} ${basePath + handlerPath}`,
-          handler: `${Controller.name}.${String(handlerName)}`,
+          METHOD: method.toLocaleUpperCase(),
+          PATH: `${basePath}${handlerPath}`,
+          HANDLER: `${Controller.name}.${String(handlerName)}`,
         });
       });
 
