@@ -3,6 +3,7 @@ import path from 'path';
 import logger from './libs/logger';
 import loggerHttp from './libs/loggerHttp';
 import MetadataKeys from './utils/metadata.keys';
+import databaseConnection from './libs/typegoose';
 
 import express, { Application, Handler } from 'express';
 import { IRouter } from './decorators/handler.decorator';
@@ -89,6 +90,7 @@ class ExpressApplication {
   public start() {
     return this.app.listen(this.port, () => {
       logger.info(`Server is running on port ${this.port}`);
+      databaseConnection();
     });
   }
 }
