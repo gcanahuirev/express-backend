@@ -23,9 +23,8 @@ const prisma = new PrismaClient({
 });
 
 prisma.$on('query', (e) => {
-  logger.info(`Query: ${e.query}`, 'aa', e.params);
-  logger.info(`Params: ${e.params}`);
-  logger.info(`Duration: ${e.duration} ms`);
+  const res = `\nQuery: ${e.query}\nParams: ${e.params}\nDuration: ${e.duration} ms`;
+  logger.info(res);
 });
 
 export default prisma;
