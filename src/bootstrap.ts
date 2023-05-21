@@ -21,10 +21,10 @@ class ExpressApplication {
     this.controllers = controllers;
 
     /* __init__ */
+    this.setupLogger();
+    this.setupAssets();
     this.setupMiddlewares(this.middlewares);
     this.setupRoutes(this.controllers);
-    this.setupAssets();
-    this.setupLogger();
   }
 
   private setupMiddlewares(middlewares: any[]) {
