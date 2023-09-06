@@ -5,6 +5,8 @@ import { json, urlencoded } from 'express';
 import logger from './libs/logger';
 import ExpressApplication from './bootstrap';
 import UserController from './api/user.controller';
+import ItemController from './api/item.controller';
+import ResourceController from './api/resource.controller';
 
 dotenv.config({ path: `${process.cwd()}/.env` });
 
@@ -15,7 +17,7 @@ const app = new ExpressApplication(
     urlencoded({ extended: true, limit: '10kb' }),
     cors(),
   ],
-  [UserController],
+  [UserController, ItemController, ResourceController],
 );
 
 const server = app.start();
