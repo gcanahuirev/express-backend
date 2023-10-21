@@ -22,9 +22,10 @@ const prisma = new PrismaClient({
   ],
 });
 
-prisma.$on('query', (e) => {
+/* Enable this hook for debug queries */
+/* prisma.$on('query', (e) => {
   const res = `\nQuery: ${e.query}\nParams: ${e.params}\nDuration: ${e.duration} ms`;
   logger.info(res);
-});
+}); */
 
 export default prisma;

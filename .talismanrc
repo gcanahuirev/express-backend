@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: .env.example
+  checksum: f97f19881c959a604009f94b64a12bc60e2cfd246cb31ee1c2ed34a709e15977
+- filename: pnpm-lock.yaml
+  checksum: 439dca975b99a1bdb9c79793475cc29651c455cebe42efa47149d9e26c719b5b
+version: "1.0"
