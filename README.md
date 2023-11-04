@@ -1,7 +1,9 @@
 # Rest API Express
+
 This project provides a quick and easy implementation of an api rest as proof of concept.
 
 ## Requirements
+
 - Nodejs >= v20.5.1
 - PrismaORM
 - Typegoose
@@ -9,24 +11,34 @@ This project provides a quick and easy implementation of an api rest as proof of
 - Pnpm >= 8.7.4
 
 ## Installation
+
 - Install deps and devDeps with `pnpm`
+
 ```sh
-$ pnpm install
+pnpm install
 ```
+
 - Run prisma ORM migrations
+
 ```sh
-$ npx prisma migrate dev
+npx prisma migrate dev
 ```
+
 ## Configuration
+
 - Add the `.env` file with values
 - Raise an instance of postgres and mongodb (use your mongo atlas account)
 
 ## Usage
+
 - Run in development mode
+
 ```sh
-$ pnpm run dev
+pnpm run dev
 ```
+
 - Output
+
 ```sh
 [INFO] 01:27:04 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.2.2)
 ┌─────────┬─────────┬──────────────────────┬──────────────────────────────────────┐
