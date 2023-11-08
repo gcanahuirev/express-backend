@@ -2,19 +2,42 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.5
 
-      - name: Run a multi-line script
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.7
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build app
+        run: pnpm run build
