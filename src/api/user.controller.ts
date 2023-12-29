@@ -3,7 +3,7 @@ import UserService from './user.service';
 import Controller from '../decorators/controller.decorator';
 
 import { Request, Response } from 'express';
-import { Get, Patch } from '../decorators/handler.decorator';
+import { Get, Put } from '../decorators/handler.decorator';
 
 @Controller('/api/users')
 export default class UserController {
@@ -33,7 +33,7 @@ export default class UserController {
     }
   }
 
-  @Patch('')
+  @Put('')
   public async createUser(req: Request, res: Response) {
     try {
       const data = await this.userService.createUser(req.body);

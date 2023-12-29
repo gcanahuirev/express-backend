@@ -3,7 +3,7 @@ import ItemService from './item.service';
 import Controller from '../decorators/controller.decorator';
 
 import { Request, Response } from 'express';
-import { Get, Patch } from '../decorators/handler.decorator';
+import { Get, Put } from '../decorators/handler.decorator';
 
 @Controller('/api/items')
 export default class ItemController {
@@ -33,7 +33,7 @@ export default class ItemController {
     }
   }
 
-  @Patch('')
+  @Put('')
   public async createItem(req: Request, res: Response) {
     try {
       const data = await this.itemService.createItem(req.body);

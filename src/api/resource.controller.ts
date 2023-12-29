@@ -3,7 +3,7 @@ import ResourceService from './resource.service';
 import Controller from '../decorators/controller.decorator';
 
 import { Request, Response } from 'express';
-import { Get, Patch } from '../decorators/handler.decorator';
+import { Get, Put } from '../decorators/handler.decorator';
 
 @Controller('/api/resources')
 export default class ResourceController {
@@ -35,7 +35,7 @@ export default class ResourceController {
     }
   }
 
-  @Patch('')
+  @Put('')
   public async createResource(req: Request, res: Response) {
     try {
       const data = await this.resourceService.createResource(req.body);
