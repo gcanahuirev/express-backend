@@ -9,7 +9,6 @@ const logger = pino({
       ignore: 'pid,hostname',
       colorize: true,
     },
-    level: 'debug',
   },
 });
 
