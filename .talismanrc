@@ -1,8 +1,0 @@
-fileignoreconfig:
-- filename: .env.example
-  checksum: f97f19881c959a604009f94b64a12bc60e2cfd246cb31ee1c2ed34a709e15977
-- filename: .github/workflows/deployment.yml
-  checksum: afbe7045aae092d3e916d23538bffda7d96eb5ac86bc6bc494dd7da782f078ca
-- filename: pnpm-lock.yaml
-  checksum: ee1f3f195a2940a20c60ca44c60b7fcd543ee96bd4911594952afa8e5c11c6a5
-version: "1.0"
