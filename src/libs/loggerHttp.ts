@@ -1,10 +1,19 @@
 import logger from './logger';
 import pinoHttp from 'pino-http';
 import { Request, Response } from 'express';
+import { randomUUID } from 'node:crypto';
 
 const loggerHttp = pinoHttp({
   logger,
   wrapSerializers: false,
+
+  genReqId: function (req, res) {
+    const existingID = req.id ?? req.headers['x-request-id'];
+    if (existingID) return existingID;
+    const id = randomUUID();
+    res.setHeader('X-Request-Id', id);
+    return id;
+  },
 
   customLogLevel: function (_req, res, err) {
     if (res.statusCode >= 500 || err) {
@@ -21,6 +30,7 @@ const loggerHttp = pinoHttp({
 
   serializers: {
     req: (req: Request) => ({
+      uuid: req.id,
       method: req.method,
       url: req.url,
       host: req.headers.host,
