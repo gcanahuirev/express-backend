@@ -40,10 +40,7 @@ const loggerHttp = pinoHttp({
     res: (res: Response) => ({
       statusCode: res.statusCode,
     }),
-    err: (err: Error) => ({
-      message: err.message,
-      stack: err.stack,
-    }),
+    err: (err: Error) => err.message,
   },
 
   // Define a custom success message
