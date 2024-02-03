@@ -1,9 +1,9 @@
-import logger from '../libs/logger';
 import ResourceService from './resource.service';
 import Controller from '../decorators/controller.decorator';
 
 import { Request, Response } from 'express';
 import { Get, Put } from '../decorators/handler.decorator';
+import { SuccessResponse } from '../utils/apiResponse';
 
 @Controller('/api/resources')
 export default class ResourceController {
@@ -14,34 +14,22 @@ export default class ResourceController {
   }
 
   @Get('')
-  public async getResources(_req: Request, res: Response) {
-    try {
-      const data = await this.resourceService.getResources();
-      return res.status(200).send(data);
-    } catch (err) {
-      logger.error(err);
-    }
+  public async getResources(req: Request, res: Response) {
+    const data = await this.resourceService.getResources();
+    return new SuccessResponse('Success', data).send(req, res);
   }
 
   @Get('/:id')
   public async getResourceById(req: Request, res: Response) {
-    try {
-      const user = await this.resourceService.getResourceById(
-        String(req.params.id),
-      );
-      return res.status(200).json(user);
-    } catch (err) {
-      logger.error(err);
-    }
+    const data = await this.resourceService.getResourceById(
+      String(req.params.id),
+    );
+    return new SuccessResponse('Success', data).send(req, res);
   }
 
   @Put('')
   public async createResource(req: Request, res: Response) {
-    try {
-      const data = await this.resourceService.createResource(req.body);
-      return res.status(201).json(data);
-    } catch (err) {
-      logger.error(err);
-    }
+    const data = await this.resourceService.createResource(req.body);
+    return new SuccessResponse('Success', data).send(req, res);
   }
 }

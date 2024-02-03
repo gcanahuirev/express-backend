@@ -1,9 +1,9 @@
-import logger from '../libs/logger';
 import ItemService from './item.service';
 import Controller from '../decorators/controller.decorator';
 
 import { Request, Response } from 'express';
 import { Get, Put } from '../decorators/handler.decorator';
+import { SuccessResponse } from '../utils/apiResponse';
 
 @Controller('/api/items')
 export default class ItemController {
@@ -14,32 +14,20 @@ export default class ItemController {
   }
 
   @Get('')
-  public async getItems(_req: Request, res: Response) {
-    try {
-      const data = await this.itemService.getItems();
-      return res.status(200).send(data);
-    } catch (err) {
-      logger.error(err);
-    }
+  public async getItems(req: Request, res: Response) {
+    const data = await this.itemService.getItems();
+    return new SuccessResponse('Success', data).send(req, res);
   }
 
   @Get('/:id')
   public async getItemById(req: Request, res: Response) {
-    try {
-      const user = await this.itemService.getItemById(String(req.params.id));
-      return res.status(200).json(user);
-    } catch (err) {
-      logger.error(err);
-    }
+    const data = await this.itemService.getItemById(String(req.params.id));
+    return new SuccessResponse('Success', data).send(req, res);
   }
 
   @Put('')
   public async createItem(req: Request, res: Response) {
-    try {
-      const data = await this.itemService.createItem(req.body);
-      return res.status(201).json(data);
-    } catch (err) {
-      logger.error(err);
-    }
+    const data = await this.itemService.createItem(req.body);
+    return new SuccessResponse('Success', data).send(req, res);
   }
 }

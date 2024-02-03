@@ -1,5 +1,6 @@
 import { User } from '@prisma/client';
 import prisma from '../libs/prismaOrm';
+import { BadRequestError, NotFoundError } from '../utils/apiError';
 
 export default class UserService {
   public async getUsers() {
@@ -13,6 +14,7 @@ export default class UserService {
         id,
       },
     });
+    if (!user) throw new NotFoundError('User does not exists');
     return user;
   }
 
@@ -24,6 +26,7 @@ export default class UserService {
         age: body.age,
       },
     });
+    if (!user) throw new BadRequestError('User could not be created');
     return user;
   }
 }

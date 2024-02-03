@@ -1,15 +1,20 @@
 import ItemEntity, { Item } from '../domain/Item.entity';
+import { BadRequestError, NotFoundError } from '../utils/apiError';
 
 export default class ItemService {
   public async getItems() {
-    return ItemEntity.find().populate('resources');
+    return await ItemEntity.find().populate('resources');
   }
 
   public async getItemById(objectId: string) {
-    return ItemEntity.findById(objectId);
+    const item = await ItemEntity.findById(objectId);
+    if (!item) throw new NotFoundError('Item does not exists');
+    return item;
   }
 
   public async createItem(body: Partial<Item>) {
-    return ItemEntity.create(body);
+    const item = await ItemEntity.create(body);
+    if (!item) throw new BadRequestError('Item could not be created');
+    return item;
   }
 }
