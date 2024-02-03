@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import MetadataKeys from '../utils/metadata.keys';
+import MetadataKeys from '../utils/metadataKeys';
 
 export enum Methods {
   GET = 'get',
