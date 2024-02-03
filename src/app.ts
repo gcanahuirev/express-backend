@@ -7,17 +7,19 @@ import ExpressApplication from './bootstrap';
 import UserController from './api/user.controller';
 import ItemController from './api/item.controller';
 import ResourceController from './api/resource.controller';
+import errorHandler from './middleware/error.handler';
 
 dotenv.config({ path: `${process.cwd()}/.env` });
 
 const app = new ExpressApplication(
   process.env.PORT,
   [
-    json({ limit: '10kb' }),
-    urlencoded({ extended: true, limit: '10kb' }),
+    json({ limit: '10mb' }),
+    urlencoded({ extended: true, limit: '10mb' }),
     cors(),
   ],
   [UserController, ItemController, ResourceController],
+  errorHandler,
 );
 
 const server = app.start();

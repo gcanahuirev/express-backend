@@ -2,11 +2,12 @@
 import path from 'path';
 import logger from './libs/logger';
 import loggerHttp from './libs/loggerHttp';
-import MetadataKeys from './utils/metadata.keys';
+import MetadataKeys from './utils/metadataKeys';
 import databaseConnection from './libs/typegoose';
 
 import express, { Application, Handler } from 'express';
 import { IRouter } from './decorators/handler.decorator';
+import asyncHandler from './middleware/async.handler';
 
 class ExpressApplication {
   private app: Application;
@@ -15,17 +16,20 @@ class ExpressApplication {
     private port: string | number,
     private middlewares: any[],
     private controllers: any[],
+    private exception: any,
   ) {
     this.app = express();
     this.port = port;
     this.middlewares = middlewares;
     this.controllers = controllers;
+    this.exception = exception;
 
     /* __init__ */
     this.setupLogger();
     this.setupAssets();
     this.setupMiddlewares(this.middlewares);
     this.setupRoutes(this.controllers);
+    this.setupException(this.exception);
   }
 
   private setupMiddlewares(middlewares: any[]) {
@@ -56,12 +60,16 @@ class ExpressApplication {
           expressRouter[method](
             handlerPath,
             ...middlewares,
-            controllerInstance[String(handlerName)].bind(controllerInstance),
+            asyncHandler(
+              controllerInstance[String(handlerName)].bind(controllerInstance),
+            ),
           );
         } else {
           expressRouter[method](
             handlerPath,
-            controllerInstance[String(handlerName)].bind(controllerInstance),
+            asyncHandler(
+              controllerInstance[String(handlerName)].bind(controllerInstance),
+            ),
           );
         }
 
@@ -75,6 +83,10 @@ class ExpressApplication {
       this.app.use(basePath, expressRouter);
     });
     console.table(info);
+  }
+
+  private setupException(exception: any) {
+    this.app.use(exception);
   }
 
   private setupAssets() {
